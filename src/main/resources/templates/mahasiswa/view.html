@@ -7,9 +7,58 @@
   </head>
   <body>
     <div th:replace="fragments/header :: nav"></div>
-    <div>
-      <h2 th:text="'Lihat Data Mahasiswa - ' + ${mahasiswa.getNpm()}">Lihat Mahasiswa - xxx</h1>
-      <h4 th:text="'NIK = ' + ${mahasiswa.getNpm()}">NPM Mahasiswa xxx</h3>
+    <div class='container'>
+      <h2 th:text="'Lihat Data Mahasiswa - ' + ${mahasiswa.getNpm()}">Lihat Mahasiswa - xxx</h2>
+      <table class='table'>
+        <tr>
+          <th>NIK</th>
+          <td th:text="${mahasiswa.getNpm()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Nama</th>
+          <td th:text="${mahasiswa.getNama()}">Satrio Nugroho</td>
+        </tr>
+        <tr>
+          <th>Tempat/Tanggal Lahir</th>
+          <td th:text="${mahasiswa.getTempat_lahir()} + '/' + ${mahasiswa.getTanggal_lahir()}">Magelang/27 Juli 1996</td>
+        </tr>
+        <tr>
+          <th>Program Studi</th>
+          <td th:text="${mahasiswa.getNamaProdi()}">179237987324</td>
+        </tr>
+        <!-- <tr> -->
+        <!--   <th>Fakultas</th> -->
+        <!--   <td th:text="${mahasiswa.getNamaFakultas()}">179237987324</td> -->
+        <!-- </tr> -->
+        <!-- <tr> -->
+        <!--   <th>Universitas</th> -->
+        <!--   <td th:text="${mahasiswa.getNamaUniversitas()}">179237987324</td> -->
+        <!-- </tr> -->
+        <tr>
+          <th>Jenis Kelamin</th>
+          <td th:text="${mahasiswa.getJenisKelamin()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Agama</th>
+          <td th:text="${mahasiswa.getAgama()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Golongan Darah</th>
+          <td th:text="${mahasiswa.getGolongan_darah()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Tahun Masuk</th>
+          <td th:text="${mahasiswa.getTahun_masuk()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Jalur Masuk</th>
+          <td th:text="${mahasiswa.getJalur_masuk()}">179237987324</td>
+        </tr>
+        <tr>
+          <th>Status</th>
+          <td th:text="${mahasiswa.getStatus()}">179237987324</td>
+        </tr>
+      </table>
     </div>
   </body>
 </html>

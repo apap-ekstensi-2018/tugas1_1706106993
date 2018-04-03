@@ -7,5 +7,28 @@
   </head>
   <body>
     <div th:replace="fragments/header :: nav"></div>
+    <div class="row">
+      <div class="container">
+        <h1>Sistem Informasi Kemahasiswaan</h1>
+        <h2>
+          <small>Selamat datang di Sistem Informasi Kemahasiswaan</small>
+        </h2>
+
+        <hr />
+
+        <div class="search">
+          <h2>Lihat data Mahasiswa berdasarkan NPM</h2>
+
+          <form action='/mahasiswa' method='GET'>
+            <div class='form-group col-sm-4'>
+              <label for="search_by_npm">Masukkan Nomor Pokok Mahasiswa</label>
+              <input type='text' id='search_by_npm' class='form-control' name='npm' placeholder='Masukkan Nomor Pokok Mahasiswa' />
+            </div>
+
+            <input type='submit' value='Lihat' class='btn btn-primary' />
+          </form>
+        </div>
+      </div>
+    </div>
   </body>
 </html>

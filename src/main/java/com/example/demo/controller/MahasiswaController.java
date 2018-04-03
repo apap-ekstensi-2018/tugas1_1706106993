@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.example.demo.model.Mahasiswa;
 import com.example.demo.service.MahasiswaService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class MahasiswaController {
 
