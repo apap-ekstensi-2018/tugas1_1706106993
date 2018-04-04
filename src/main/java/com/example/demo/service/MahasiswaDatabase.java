@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -34,5 +36,17 @@ public class MahasiswaDatabase implements MahasiswaService {
     mahasiswaMapper.update(mahasiswa);
 
     return mahasiswaMapper.select(mahasiswa.npm) != null;
+  }
+
+  @Override
+  public List<Mahasiswa> getByTahunAndProdi(int tahun, int prodi){
+    log.info("select mahasiswa with prodi {} and year {}", prodi, tahun);
+    return mahasiswaMapper.getByTahunAndProdi(tahun, prodi);
+  }
+
+  @Override
+  public List<Mahasiswa> getGraduatedByTahunAndProdi(int tahun, int prodi){
+    log.info("select mahasiswa with prodi {} and year {}", prodi, tahun);
+    return mahasiswaMapper.getGraduatedByTahunAndProdi(tahun, prodi);
   }
 }
