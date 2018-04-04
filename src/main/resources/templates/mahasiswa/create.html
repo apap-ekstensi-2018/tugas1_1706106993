@@ -1,0 +1,16 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:replace="fragments/header :: header(title=${title})"></title>
+    <link rel="stylesheet" href="/css/datatables.min.css"/>
+    <script type="text/javascript" src="/js/datatables.min.js"></script>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: nav"></div>
+    <br/><br/>
+    <div class="container">
+      <h3 th:text="${status}"></h3>
+      <h6 th:text="${message}"></h6>
+    </div>
+  </body>
+</html>

@@ -4,4 +4,5 @@ import com.example.demo.model.Mahasiswa;
 
 public interface MahasiswaService {
   Mahasiswa selectMahasiswa(String npm);
+  boolean insert(Mahasiswa mahasiswa);
 }

@@ -20,6 +20,14 @@ import lombok.extern.slf4j.Slf4j;
 public class Mahasiswa
 {
 
+  public static final String[] JENIS_KELAMIN_OPTIONS  = {"Laki-laki", "Perempuan"};
+  public static final String[] GOLONGAN_DARAH_OPTIONS = {"A+", "A-", "AB+", "AB-", "B+", "B-", "O+", "O-"};
+  public static final String[] AGAMA_OPTIONS          = {"Islam", "Budha", "Hindu", "Katolik", "Konghucu", "Protestan"};
+  public static final String[] JALUR_MASUK_OPTIONS    = {"Ujian Tulis Bersama/SBMPTN", "Ujian Tulis Mandiri", "Undangan Olimpiade", "Undangan Paralel/PPKB", "Undangan Reguler/SNMPTN"};
+
+  public static final int TAG_JK_PRIA   = 1;
+  public static final int TAG_JK_WANITA = 0;
+
   private ProgramStudi prodi;
 
   private int id;
@@ -45,14 +53,21 @@ public class Mahasiswa
     return prodi.getNama_prodi();
   }
 
-  public String getNamaFakultas()
-  {
-    log.info("Nama Fakultas {}", prodi.getFakultas());
-    return prodi.getFakultas().getNama_fakultas();
-  }
+  public String generateNPM(String kodeUniv, String kodeProdi, String kodeInputData){
+    String kode = "";
+    switch (jalurMasuk){
+      case JALUR_MASUK_OPTIONS[0]: kode = "57";
+                                   break;
+      case JALUR_MASUK_OPTIONS[1]: kode = "62";
+                                   break;
+      case JALUR_MASUK_OPTIONS[2]: kode = "53";
+                                   break;
+      case JALUR_MASUK_OPTIONS[3]: kode = "55";
+                                   break;
+      case JALUR_MASUK_OPTIONS[4]: kode = "54";
+                                   break;
+    }
 
-  public String getNamaUniversitas()
-  {
-    return prodi.getFakultas().getUniversitas().getNama_univ();
+    return Integer.toString(tahunMasuk.substring(2,4)) + kodeUniv + kodeProdi + kode + kodeInputData;
   }
 }

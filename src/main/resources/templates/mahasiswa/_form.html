@@ -1,0 +1,117 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:fragment="header(title)" th:text="${title}">Title</title>
+    <link rel="stylesheet" href="/css/datatables.min.css"/>
+    <script type="text/javascript" src="/js/datatables.min.js"></script>
+  </head>
+  <body>
+    <div th:fragment="formMahasiswa" class="container">
+      <form th:action="@{${linkSubmit}}" method="post" th:object="${mahasiswa}">
+        <input th:field="*{id}" hidden="true"/>
+        <input th:field="*{npm}" hidden="true"/>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='nama'>Nama Lengkap</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <input id='nama' name='nama' th:field="*{nama}" class='form-control' />
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='tempat_lahir'>Tempat Lahir</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <input id='tempat_lahir' name='tempatLahir' th:field="*{tempatLahir}" class='form-control' />
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='tanggal_lahir'>Tanggal Lahir</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <input id='tanggal_lahir' name='tanggalLahir' th:field="*{tanggalLahir}" class='form-control' />
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='jenisKelamin'>Jenis Kelamin</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <select class="custom-select" th:field="*{jenisKelamin}">
+              <option th:each="data, i : ${jenis_kelamin}"  th:attr="selected=(*{jenisKelamin} == ${data})" th:value="${i.index}" th:text="${data}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='agama'>Agama</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <select class="custom-select" th:field="*{agama}">
+              <option th:each="data : ${agama}" th:attr="selected=(*{agama} == ${data})" th:value="${data}" th:text="${data}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='golonganDarah'>Golongan Darah</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <select class="custom-select" th:field="*{golonganDarah}">
+              <option th:each="data : ${goldar}"  th:attr="selected=(*{golonganDarah} == ${data})" th:value="${data}" th:text="${data}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='tahunMasuk'>Tahun Masuk</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <input id='tahun_masuk' name='tahunMasuk' class='form-control' placeholder="2015" th:field="*{tahunMasuk}" />
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='jalurMasuk'>Jalur Masuk</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <select class="custom-select" th:field="*{jalurMasuk}">
+              <option th:each="data : ${jalur_masuk}"  th:attr="selected=(*{jalurMasuk} == ${data})" th:value="${data}" th:text="${data}"></option>
+            </select>
+          </div>
+        </div>
+
+        <div class='row form-group'>
+          <div class='col-sm-3'>
+            <label for='idProdi'>Id Prodi</label>
+          </div>
+          <div class='col-xs-1'></div>
+          <div class='col'>
+            <input id='id_prodi' name='idProdi' class='form-control' placeholder="" th:field="*{idProdi}" />
+          </div>
+        </div>
+
+        <input type='submit' value='Simpan' class='btn btn-primary' />
+
+      </form>
+    </div>
+  </body>
+</html>

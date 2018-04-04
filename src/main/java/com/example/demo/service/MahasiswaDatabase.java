@@ -19,4 +19,12 @@ public class MahasiswaDatabase implements MahasiswaService {
     log.info ("select mahasiswa with npm {}", npm);
     return mahasiswaMapper.select(npm);
   }
+
+  @Override
+  public boolean insert(Mahasiswa mahasiswa){
+    log.info("insert mahasiswa to database");
+    mahasiswaMapper.insert(mahasiswa);
+
+    return mahasiswaMapper.select(mahasiswa.npm) != null;
+  }
 }
