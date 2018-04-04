@@ -49,4 +49,9 @@ public class MahasiswaDatabase implements MahasiswaService {
     log.info("select mahasiswa with prodi {} and year {}", prodi, tahun);
     return mahasiswaMapper.getGraduatedByTahunAndProdi(tahun, prodi);
   }
+
+  @Override
+  public List<Mahasiswa> searchByUnivAndFakultasAndProdi(int univ, int fakultas, int prodi){
+    return mahasiswaMapper.getByUnivAndFakultasAndProdi(univ, fakultas, prodi);
+  }
 }

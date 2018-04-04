@@ -28,4 +28,7 @@ public interface FakultasMapper {
       fetchType = FetchType.LAZY))
   })
   Fakultas findById (@Param("id_fakultas") int id_fakultas);
+
+  @Select("SELECT * FROM fakultas where id_univ = #{id_univ}")
+  List<Fakultas> findByUniv (@Param("id_univ") int id_univ);
 }

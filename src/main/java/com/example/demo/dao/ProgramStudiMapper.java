@@ -28,4 +28,7 @@ public interface ProgramStudiMapper {
       fetchType = FetchType.LAZY))
   })
   ProgramStudi findById (@Param("id_prodi") int id_prodi);
+
+  @Select("SELECT * FROM program_studi WHERE id_fakultas = #{id_fakultas}")
+  List<ProgramStudi> findByFakultas (@Param("id_fakultas") int id_fakultas);
 }

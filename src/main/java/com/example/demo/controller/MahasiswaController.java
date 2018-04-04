@@ -47,7 +47,7 @@ public class MahasiswaController {
     if(mahasiswa == null){
       model.addAttribute("status", "Gagal!");
       model.addAttribute("message", "Gagal menambahkan mahasiswa");
-      return "create";
+      return "mahasiswa/create";
     }
 
     model.addAttribute("mahasiswa", mahasiswa);
@@ -82,7 +82,7 @@ public class MahasiswaController {
       model.addAttribute("status", "Gagal!");
       model.addAttribute("message", "Gagal menambahkan mahasiswa");
     }
-    return "create";
+    return "mahasiswa/create";
   }
 
   @RequestMapping("/mahasiswa/ubah")
@@ -97,7 +97,7 @@ public class MahasiswaController {
     model.addAttribute("jalur_masuk", Mahasiswa.JALUR_MASUK_OPTIONS);
     model.addAttribute("linkSubmit", "/mahasiswa/" + npm + "/ubah");
     model.addAttribute("hideAlert", true);
-    return "edit";
+    return "mahasiswa/edit";
   }
 
   @RequestMapping(value="/mahasiswa/{npm}/ubah", method=RequestMethod.PUT)
@@ -110,14 +110,38 @@ public class MahasiswaController {
       model.addAttribute("status", "Gagal!");
       model.addAttribute("message", "Gagal menambahkan mahasiswa");
     }
-    return "create";
+    return "mahasiswa/create";
   }
 
   @RequestMapping(value="/mahasiswa/cari", method=RequestMethod.POST)
-  public String search (Model model)
+  public String search (Model model,
+      @RequestParam(value = "univ", required = false) String idUniv,
+      @RequestParam(value = "fakultas", required = false) String idFakultas,
+      @RequestParam(value = "prodi", required = false) String idProdi)
   {
-    model.addAttribute("title", "Index");
-    return "home";
+    List<Universitas> listUniv = universitasService.all();
+    List<Fakultas> listFakultas = fakultasService.findByUniv(idUniv);
+    List<ProgramStudi> listProdi = programStudiService.findByFakultas(idFakultas);
+
+    model.addAttribute("title", "Cari Mahasiswa");
+
+    if(listFakultas.size() != 0){
+      model.addAttribute("fakultas-show", true);
+      model.addAttribute("fakultas", listFakultas);
+    }
+
+    if(listProdi.size() != 0){
+      model.addAttribute("prodi-show", true);
+      model.addAttribute("prodi", listProdi);
+      List<Mahasiswa> mahasiswa = mahasiswaService.searchByUnivAndFakultasAndProdi(idUniv, idFakultas, idProdi);
+
+      if(mahasiswa.size() != 0){
+        model.addAttribute("mahasiswa", mahasiswa);
+        return "mahasiswa/index";
+      }
+    }
+
+    return "mahasiswa/search";
   }
 
   private getAdditionalData(mahasiswa)

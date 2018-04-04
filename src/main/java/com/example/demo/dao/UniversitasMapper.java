@@ -19,4 +19,7 @@ import com.example.demo.model.Universitas;
 public interface UniversitasMapper {
   @Select("SELECT DISTINCT * FROM universitas WHERE kode_univ = #{id_univ} LIMIT 1")
   Universitas findById (@Param("id_univ") int id_univ);
+
+  @Select("SELECT * FROM universitas")
+  List<Universitas> all();
 }

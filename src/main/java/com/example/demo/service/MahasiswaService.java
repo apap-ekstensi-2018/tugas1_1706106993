@@ -9,4 +9,5 @@ public interface MahasiswaService {
   boolean update(Mahasiswa mahasiswa);
   List<Mahasiswa> getByTahunAndProdi(int tahun, int prodi);
   List<Mahasiswa> getGraduatedByTahunAndProdi(int tahun, int prodi);
+  List<Mahasiswa> searchByUnivAndFakultasAndProdi(int univ, int fakultas, int prodi);
 }

@@ -56,4 +56,11 @@ public interface MahasiswaMapper {
     + "id_prodi=#{mahasiswa.idProdi}"
     + " WHERE id=#{mahasiswa.id}")
   void update(@Param("mahasiswa") Mahasiswa mahasiswa);
+
+  @Select("SELECT m.* FROM mahasiswa m"
+    + "JOIN program_studi p ON m.id_prodi = p.id"
+    + "JOIN fakultas f ON p.id_fakultas = f.id"
+    + "JOIN universitas u ON u.id = f.id_univ"
+    + "WHERE u.id = #{id_univ} AND f.id = #{id_fakultas} AND p.id = #{id_prodi}")
+  List<Mahasiswa> getByUnivAndFakultasAndProdi(int id_univ, int id_fakultas, int id_prodi);
 }
