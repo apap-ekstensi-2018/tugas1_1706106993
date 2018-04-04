@@ -43,6 +43,13 @@ public class MahasiswaController {
     Mahasiswa mahasiswa = mahasiswaService.selectMahasiswa(npm);
 
     model.addAttribute("title", "Index");
+
+    if(mahasiswa == null){
+      model.addAttribute("status", "Gagal!");
+      model.addAttribute("message", "Gagal menambahkan mahasiswa");
+      return "create";
+    }
+
     model.addAttribute("mahasiswa", mahasiswa);
     return "mahasiswa/view";
   }
