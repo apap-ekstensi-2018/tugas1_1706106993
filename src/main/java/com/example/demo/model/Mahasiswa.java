@@ -53,9 +53,9 @@ public class Mahasiswa
     return prodi.getNama_prodi();
   }
 
-  public String generateNPM(String kodeUniv, String kodeProdi, String kodeInputData){
+  public String generateNPM(String kodeUniv, String kodeInputData){
     String kode = "";
-    switch (jalurMasuk){
+    switch (jalur_masuk){
       case JALUR_MASUK_OPTIONS[0]: kode = "57";
                                    break;
       case JALUR_MASUK_OPTIONS[1]: kode = "62";
@@ -68,6 +68,6 @@ public class Mahasiswa
                                    break;
     }
 
-    return Integer.toString(tahunMasuk.substring(2,4)) + kodeUniv + kodeProdi + kode + kodeInputData;
+    return Integer.toString(tahun_masuk.substring(2,4)) + kodeUniv + id_prodi + kode + kodeInputData;
   }
 }

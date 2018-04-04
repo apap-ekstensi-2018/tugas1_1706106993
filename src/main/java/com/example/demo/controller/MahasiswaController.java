@@ -1,5 +1,7 @@
 package com.example.demo.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -120,8 +122,8 @@ public class MahasiswaController {
       @RequestParam(value = "prodi", required = false) String idProdi)
   {
     List<Universitas> listUniv = universitasService.all();
-    List<Fakultas> listFakultas = fakultasService.findByUniv(idUniv);
-    List<ProgramStudi> listProdi = programStudiService.findByFakultas(idFakultas);
+    List<Fakultas> listFakultas = fakultasService.findByUniv(Integer.parseInt(idUniv));
+    List<ProgramStudi> listProdi = programStudiService.findByFakultas(Integer.parseInt(idFakultas));
 
     model.addAttribute("title", "Cari Mahasiswa");
 
@@ -133,7 +135,7 @@ public class MahasiswaController {
     if(listProdi.size() != 0){
       model.addAttribute("prodi-show", true);
       model.addAttribute("prodi", listProdi);
-      List<Mahasiswa> mahasiswa = mahasiswaService.searchByUnivAndFakultasAndProdi(idUniv, idFakultas, idProdi);
+      List<Mahasiswa> mahasiswa = mahasiswaService.searchByUnivAndFakultasAndProdi(Integer.parseInt(idUniv), Integer.parseInt(idFakultas), Integer.parseInt(idProdi));
 
       if(mahasiswa.size() != 0){
         model.addAttribute("mahasiswa", mahasiswa);
@@ -144,24 +146,20 @@ public class MahasiswaController {
     return "mahasiswa/search";
   }
 
-  private getAdditionalData(mahasiswa)
+  private String getAdditionalData(Mahasiswa mahasiswa)
   {
     ProgramStudi ps = programStudiService.findById(mahasiswa.getId_prodi());
     Fakultas fak = fakultasService.findById(ps.getId_fakultas());
 
     String tmpNPM = mahasiswa.generateNPM(
-        String.valueOf(faku.getUniversitas().getKode_univ()),
-        String.valueOf(mahasiswa.getIdProdi()),
-        mode.equals("insert") ? "001" : mahasiswa.getNpm().substring(9, 12));
+        String.valueOf(fak.getUniversitas().getKode_univ()), "001");
 
     int i = 1;
-    while (mahasiswaDAO.select(tmpNPM) != null) {
+    while (mahasiswaService.selectMahasiswa(tmpNPM) != null) {
       tmpNPM = mahasiswa.generateNPM(
-          mahasiswa.getTahunMasuk(),
-          String.valueOf(um.getKodeUniversitas()),
-          String.valueOf(mahasiswa.getIdProdi()),
-          mahasiswa.getJalurMasuk(),
+          String.valueOf(fak.getUniversitas().getKode_univ()),
           String.format("00%s", i++));
     }
     return tmpNPM;
   }
+}

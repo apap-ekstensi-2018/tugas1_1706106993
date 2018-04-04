@@ -52,8 +52,8 @@ public class GraduationController {
       int parseTahun = Integer.valueOf(tahun);
       int parseIdProdi = Integer.valueOf(idProdi);
 
-      totalMahasiswa = mahasiswaService.getByTahunAndProdi(parseTahun, parseIdProdi).size;
-      totalMahasiswaLulus = mahasiswaService.getGraduatedByTahunAndProdi(parseTahun, parseIdProdi).size;
+      totalMahasiswa = mahasiswaService.getByTahunAndProdi(parseTahun, parseIdProdi).size();
+      totalMahasiswaLulus = mahasiswaService.getGraduatedByTahunAndProdi(parseTahun, parseIdProdi).size();
       presentase = totalMahasiswaLulus / totalMahasiswa * 100;
 
       prodi = programStudiService.findById(parseIdProdi);

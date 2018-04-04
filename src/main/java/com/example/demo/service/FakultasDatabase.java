@@ -25,4 +25,9 @@ public class FakultasDatabase implements FakultasService {
   public List<Fakultas> findByUniv(){
     return new List<Fakultas>();
   }
+
+  @Override
+  public Fakultas findById(int id){
+    return fakultasMapper.findById(id);
+  }
 }

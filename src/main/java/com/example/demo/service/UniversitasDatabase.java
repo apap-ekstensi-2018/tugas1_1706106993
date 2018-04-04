@@ -18,6 +18,6 @@ public class UniversitasDatabase implements UniversitasService {
 
   @Override
   public List<Universitas> all(){
-    return universitasMapper.all()
+    return universitasMapper.all();
   }
 }

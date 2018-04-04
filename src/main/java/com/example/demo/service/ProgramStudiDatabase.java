@@ -1,5 +1,7 @@
 package com.example.demo.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,8 +17,13 @@ public class ProgramStudiDatabase implements ProgramStudiService {
   private ProgramStudiMapper mapper;
 
   @Override
-  public ProgramStudi findProdi(int id) {
+  public ProgramStudi findById(int id) {
     log.info("Find program studi with id {}", id);
     return mapper.findById(id);
+  }
+
+  @Override
+  public List<ProgramStudi> findByFakultas(int id){
+    return mapper.findByFakultas(id);
   }
 }

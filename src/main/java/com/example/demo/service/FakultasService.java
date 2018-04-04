@@ -6,4 +6,6 @@ import com.example.demo.model.Fakultas;
 public interface FakultasService {
   List<Fakultas> findByUniv();
   List<Fakultas> findByUniv(int id_univ);
+
+  Fakultas findById(int id);
 }
