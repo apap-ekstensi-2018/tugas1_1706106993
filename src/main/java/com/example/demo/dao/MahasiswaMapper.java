@@ -25,7 +25,7 @@ public interface MahasiswaMapper {
     @Result(property="prodi", column="id_prodi", one=@One(
       select = "com.example.demo.dao.ProgramStudiMapper.findById",
       fetchType = FetchType.LAZY))
-    })
+  })
   Mahasiswa select (@Param("npm") String npm);
 
   @Insert("INSERT INTO mahasiswa (npm, nama, tempat_lahir, tanggal_lahir, jenis_kelamin, agama, golongan_darah, status, tahun_masuk, jalur_masuk, id_prodi) VALUES ("
@@ -40,5 +40,20 @@ public interface MahasiswaMapper {
     + "#{mahasiswa.tahunMasuk},"
     + "#{mahasiswa.jalurMasuk},"
     + "#{mahasiswa.idProdi})")
-  void insertMahasiwa(@Param("mahasiswa") MahasiswaModel mahasiswa);
+  void insert(@Param("mahasiswa") Mahasiswa mahasiswa);
+
+  @Update("UPDATE mahasiswa SET "
+    + "npm=#{mahasiswa.npm},"
+    + "nama=#{mahasiswa.nama},"
+    + "tempat_lahir=#{mahasiswa.tempatLahir},"
+    + "tanggal_lahir=#{mahasiswa.tanggalLahir},"
+    + "jenis_kelamin=#{mahasiswa.jenisKelamin},"
+    + "agama=#{mahasiswa.agama},"
+    + "golongan_darah=#{mahasiswa.golonganDarah},"
+    + "status=#{mahasiswa.status},"
+    + "tahun_masuk=#{mahasiswa.tahunMasuk},"
+    + "jalur_masuk=#{mahasiswa.jalurMasuk},"
+    + "id_prodi=#{mahasiswa.idProdi}"
+    + " WHERE id=#{mahasiswa.id}")
+  void update(@Param("mahasiswa") Mahasiswa mahasiswa);
 }

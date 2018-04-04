@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:replace="fragments/header :: header(title=${title})"></title>
+    <link rel="stylesheet" href="/css/datatables.min.css"/>
+    <script type="text/javascript" src="/js/datatables.min.js"></script>
+  </head>
+  <body>
+    <div th:replace="fragments/header :: nav"></div>
+    <div class='container'>
+      <br />
+      <h2>Ubah Mahasiswa Mahasiswa</h2>
+      <br />
+
+      <div class="row" th:replace="mahasiswa/_form :: formMahasiswa">
+      </div>
+    </div>
+  </body>
+</html>

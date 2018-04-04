@@ -27,4 +27,12 @@ public class MahasiswaDatabase implements MahasiswaService {
 
     return mahasiswaMapper.select(mahasiswa.npm) != null;
   }
+
+  @Override
+  public boolean update(Mahasiswa mahasiswa){
+    log.info("update mahasiswa dengan npm {}", mahasiswa.getNpm());
+    mahasiswaMapper.update(mahasiswa);
+
+    return mahasiswaMapper.select(mahasiswa.npm) != null;
+  }
 }

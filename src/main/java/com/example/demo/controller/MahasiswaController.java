@@ -79,17 +79,31 @@ public class MahasiswaController {
   }
 
   @RequestMapping("/mahasiswa/ubah")
-  public String edit (Model model)
+  public String edit (Model model, @RequestParam(value="npm", required=true) String npm)
   {
-    model.addAttribute("title", "Index");
-    return "home";
+    Mahasiswa mahasiswa = mahasiswaService.selectMahasiswa(npm);
+    model.addAttribute("title", "Ubah Mahasiswa");
+    model.addAttribute("mahasiswa", new Mahasiswa());
+    model.addAttribute("jenis_kelamin", Mahasiswa.JENIS_KELAMIN_OPTIONS);
+    model.addAttribute("agama", Mahasiswa.AGAMA_OPTIONS);
+    model.addAttribute("goldar", Mahasiswa.GOLONGAN_DARAH_OPTIONS);
+    model.addAttribute("jalur_masuk", Mahasiswa.JALUR_MASUK_OPTIONS);
+    model.addAttribute("linkSubmit", "/mahasiswa/" + npm + "/ubah");
+    model.addAttribute("hideAlert", true);
+    return "edit";
   }
 
   @RequestMapping(value="/mahasiswa/{npm}/ubah", method=RequestMethod.PUT)
-  public String update (Model model)
+  public String update (Model model, @ModelAttribute Mahasiswa mahasiswa)
   {
-    model.addAttribute("title", "Index");
-    return "home";
+    if (mahasiswaService.update(mahasiswa)){
+      model.addAttribute("status","Sukses!");
+      model.addAttribute("message", String.format("Mahasiswa dengan NPM %s berhasil ditambahkan.", mahasiswa.getNpm()));
+    } else {
+      model.addAttribute("status", "Gagal!");
+      model.addAttribute("message", "Gagal menambahkan mahasiswa");
+    }
+    return "create";
   }
 
   @RequestMapping(value="/mahasiswa/cari", method=RequestMethod.POST)
